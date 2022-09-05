@@ -9,10 +9,10 @@ properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKe
 stage('checkOut'){
 git branch: 'development', credentialsId: '96e32222-5db7-4331-be5f-b8ef63f4dbff', url: 'https://github.com/ms-ec2-bunit/maven-web-application.git'
 }
-/* stage('Buildcode'){
+ stage('Buildcode'){
 sh "${mavenHomeDir}/bin/mvn clean package"
 }
-stage('GenerageSonarquebRepo'){
+/* stage('GenerageSonarquebRepo'){
 sh "${mavenHomeDir}/bin/mvn clean sonar:sonar"
 }
 stage('uploadartifactstorepo'){
