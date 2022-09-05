@@ -1,0 +1,26 @@
+node{
+
+def mavenHomeDir = tool name: "maven3.8.6" 
+
+properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr:
+ '5', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration',
+ changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])
+
+stage('checkOut'){
+git branch: 'development', credentialsId: '96e32222-5db7-4331-be5f-b8ef63f4dbff', url: 'https://github.com/ms-ec2-bunit/maven-web-application.git'
+}
+/* stage('Buildcode'){
+sh "${mavenHomeDir}/bin/mvn clean package"
+}
+stage('GenerageSonarquebRepo'){
+sh "${mavenHomeDir}/bin/mvn clean sonar:sonar"
+}
+stage('uploadartifactstorepo'){
+sh "${mavenHomeDir}/bin/mvn clean deploy"
+}
+stage('DeploytheProjectIntoTomcatServer'){
+sshagent(['19cfb7c8-ac2d-4f10-844f-3e87c232ecdc']) {
+sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@13.126.9.211:/opt/apache-tomcat-9.0.65/webapps/"
+}
+} */
+}
